@@ -2,295 +2,140 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Folder Explorer - Berkas Lamaran</title>
+<title>Folder Berkas Lamaran</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+body{
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:#fff;
+  min-height:100vh;
+  padding:20px;
 }
 
-body {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  min-height: 100vh;
-  padding: 20px;
+/* Header */
+.header{
+  text-align:center;
+  margin-bottom:25px;
+}
+.header img{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border:3px solid rgba(0,255,255,.4);
+  border-radius:5px; /* radius 5px */
+  margin-bottom:10px;
+  box-shadow:0 0 15px rgba(0,255,255,.25);
+}
+.header h1{
+  font-size:18px; /* judul diperkecil */
+  letter-spacing:1px;
+  text-shadow:0 0 12px rgba(0,255,255,0.4);
+}
+.header p{
+  font-size:12px;
+  opacity:.7;
 }
 
-/* ===== Header ===== */
-.header {
-  text-align: center;
-  margin-bottom: 25px;
+.explorer{
+  max-width:900px;
+  margin:auto;
+  background:rgba(255,255,255,0.05);
+  border-radius:18px;
+  backdrop-filter:blur(10px);
+  padding:15px;
+  box-shadow:0 10px 35px rgba(0,0,0,0.4);
 }
 
-.header h1 {
-  font-size: 26px;
-  letter-spacing: 1px;
-  text-shadow: 0 0 15px rgba(0,255,255,0.3);
+.folder-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:16px;
 }
 
-.header p {
-  opacity: 0.7;
-  font-size: 14px;
+.folder{
+  background:rgba(0,0,0,0.25);
+  border-radius:16px;
+  padding:15px 10px;
+  text-align:center;
+  transition:.35s ease;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
 }
 
-/* ===== Explorer Window ===== */
-.explorer {
-  max-width: 900px;
-  margin: auto;
-  background: rgba(255,255,255,0.05);
-  border-radius: 18px;
-  backdrop-filter: blur(10px);
-  box-shadow: 
-    0 10px 35px rgba(0,0,0,0.4),
-    inset 0 0 0 1px rgba(255,255,255,0.05);
-  padding: 15px;
+.folder:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 0 15px rgba(0,255,255,.2),0 0 30px rgba(255,0,255,.15);
 }
 
-/* Title bar */
-.title-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+.folder a{
+  text-decoration:none;
+  color:white;
+  display:block;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+/* Icon Style */
+.icon{
+  font-size:40px;
+  margin-bottom:10px;
 }
 
-.dot.red { background:#ff5f56; }
-.dot.yellow { background:#ffbd2e; }
-.dot.green { background:#27c93f; }
-
-.path {
-  margin-left: auto;
-  font-size: 13px;
-  opacity: 0.7;
-}
-
-/* ===== Folder Grid ===== */
-.folder-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.folder {
-  background: rgba(0,0,0,0.25);
-  border-radius: 16px;
-  padding: 15px 10px;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-  transition: 0.35s ease;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
-}
-
-.folder:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow:
-    0 0 15px rgba(0,255,255,0.2),
-    0 0 30px rgba(255,0,255,0.15);
-}
-
-/* Folder icon */
-.folder-icon {
-  width: 70px;
-  height: 50px;
-  margin: 0 auto 10px auto;
-  background: linear-gradient(135deg,#facc15,#f59e0b);
-  border-radius: 6px;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-
-.folder-icon::before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 8px;
-  width: 28px;
-  height: 12px;
-  background: linear-gradient(135deg,#fde68a,#fbbf24);
-  border-radius: 4px 4px 0 0;
-}
-
-/* Blue Folder for Main */
-.folder.main .folder-icon {
-  background: linear-gradient(135deg,#60a5fa,#3b82f6);
-}
-
-.folder.main .folder-icon::before {
-  background: linear-gradient(135deg,#93c5fd,#60a5fa);
-}
-
-/* Folder name */
-.folder-name {
-  font-size: 13px;
-  line-height: 1.3;
-}
-
-/* ===== Sub Items Modal ===== */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(5px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.modal-box {
-  width: 90%;
-  max-width: 500px;
-  background: rgba(10,10,20,0.9);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 0 40px rgba(0,255,255,0.2);
-}
-
-.modal h3 {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.file-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.file-list li {
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
-  font-size: 14px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
-  transition: .2s ease;
-}
-
-.file-list li:hover {
-  background: rgba(0,255,255,0.05);
-  transform: translateX(5px);
-}
-
-/* Close Button */
-.close-btn {
-  margin-top: 15px;
-  text-align: center;
-}
-
-.close-btn button{
-  padding:10px 20px;
-  border:none;
-  border-radius:12px;
-  background: linear-gradient(135deg,#00ffff,#ff00ff);
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.close-btn button:hover{
-  box-shadow:0 0 15px rgba(0,255,255,0.6);
+.name{
+  font-size:13px;
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>📁 Folder Berkas Lamaran</h1>
-  <p>Tampilan Modern & Elegan</p>
+  <!-- Ganti URL_FOTO_PROFIL dengan foto kamu -->
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6QsSfnBXapsJZMolSe45PK1IP1MYAVUTalyUArkCoGc2o4nWG49CWqc9V9DJt9ycEaotHPiqCB84jxWfcTCl7w98hgTBDMRQoYLSrNvrMGd_HeIM8Lb6SHPBG8CXBEAX0gEPIHMYBDk7IRINPF8tiIp-ZUUWgU7DocOWfb-aCs1yoaHkTfY555Z_0sao/s800/1000108596.jpg" alt="Foto Profil">
+  <h1>FOLDER BERKAS LAMARAN</h1>
+  <p>Klik folder untuk membuka halaman</p>
 </div>
 
 <div class="explorer">
-  <div class="title-bar">
-    <div class="dot red"></div>
-    <div class="dot yellow"></div>
-    <div class="dot green"></div>
-    <div class="path">This PC / Dokumen / Berkas Lamaran</div>
-  </div>
-
   <div class="folder-grid">
 
-    <div class="folder main" onclick="openFolder('lamaran')">
-      <div class="folder-icon"></div>
-      <div class="folder-name">📁 Berkas Lamaran</div>
-    </div>
+    <div class="folder"><a href="https://drive.google.com/drive/folders/1obffcqYNCLqVV9_SkSF4SCxTX5Uslzus" target="_blank">
+      <div class="icon">📄</div><div class="name">CV</div></a></div>
 
-    <div class="folder" onclick="openFolder('lain')">
-      <div class="folder-icon"></div>
-      <div class="folder-name">📁 Lain-lain</div>
-    </div>
+    <div class="folder"><a href="https://drive.google.com/file/d/1827dFV_VNNMtKqFS7KsiyYPzMXUdD9XK/view?usp=drivesdk" target="_blank">
+      <div class="icon">📝</div><div class="name">Surat Lamaran</div></a></div>
+
+    <div class="folder"><a href="https://drive.google.com/drive/folders/1MY_XFM5PJ-kbMxp9QMFrdC6o0j7T9pIk" target="_blank">
+      <div class="icon">🎓</div><div class="name">Ijazah</div></a></div>
+
+    <div class="folder"><a href="https://drive.google.com/drive/folders/1og3ATLzHJxZKQz57r0SwxeQVkAxyUmuI" target="_blank">
+      <div class="icon">📊</div><div class="name">Transkrip Nilai</div></a></div>
+
+    <div class="folder"><a href="#" target="_blank">
+      <div class="icon">🛡️</div><div class="name">SKCK</div></a></div>
+
+    <div class="folder"><a href="https://drive.google.com/drive/folders/147rwm8DQ1r9gRZPiXMRSj2dUUwnjFyRj" target="_blank">
+      <div class="icon">🆔</div><div class="name">KTP</div></a></div>
+
+    <div class="folder"><a href="https://drive.google.com/drive/folders/1zrALoL0UW_p88znjy5aZv8RLCtwDPkEG" target="_blank">
+      <div class="icon">🖼️</div><div class="name">Foto</div></a></div>
+
+    <div class="folder"><a href="https://drive.google.com/drive/folders/1F4liExl1xGCBPziZva_8JCEHtEqJBu61" target="_blank">
+      <div class="icon">📁</div><div class="name">Paklaring</div></a></div>
+
+    <div class="folder"><a href="https://drive.google.com/drive/folders/1BcFktlcyDJqSvKmCOfJS0AH_84x7M7JO" target="_blank">
+      <div class="icon">🏆</div><div class="name">Sertifikat</div></a></div>
+
+    <div class="folder"><a href="#" target="_blank">
+      <div class="icon">📦</div><div class="name">Lain-lain</div></a></div>
 
   </div>
 </div>
-
-<!-- Modal -->
-<div id="modal" class="modal">
-  <div class="modal-box">
-    <h3 id="folderTitle">Folder</h3>
-    <ul class="file-list" id="fileList"></ul>
-    <div class="close-btn">
-      <button onclick="closeFolder()">Tutup Folder</button>
-    </div>
-  </div>
-</div>
-
-<script>
-const data = {
-  lamaran: [
-    "📂 CV",
-    "📂 Surat Lamaran",
-    "📂 Ijazah",
-    "📂 Transkrip Nilai",
-    "📂 SKCK",
-    "📂 KTP",
-    "📂 Foto",
-    "📂 Paklaring",
-    "📂 Sertifikat Penghargaan"
-  ],
-  lain: [
-    "📂 Dokumen Tambahan",
-    "📂 Catatan Pribadi",
-    "📂 File Lainnya"
-  ]
-};
-
-function openFolder(type){
-  const modal = document.getElementById('modal');
-  const title = document.getElementById('folderTitle');
-  const list = document.getElementById('fileList');
-
-  title.innerText = type === 'lamaran' ? '📁 Berkas Lamaran' : '📁 Lain-lain';
-  list.innerHTML = '';
-
-  data[type].forEach(item=>{
-    const li = document.createElement('li');
-    li.textContent = item;
-    list.appendChild(li);
-  });
-
-  modal.style.display = 'flex';
-}
-
-function closeFolder(){
-  document.getElementById('modal').style.display = 'none';
-}
-</script>
 
 </body>
 </html>
