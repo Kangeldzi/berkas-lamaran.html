@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --neon-blue: #00f5ff;
+            --electric-purple: #9d00ff;
+            --neon-pink: #ff00e4;
+            --dark-space: #0a0a1a;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark-space) 0%, #1a1a2e 100%);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+.custom-image-container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .custom-clickable-image {
+            width: 1024px;
+            height: 1536px;
+            object-fit: cover;
+            cursor: pointer;
+            display: block;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.2);
+            filter: drop-shadow(0 0 10px rgba(157, 0, 255, 0.3));
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+.custom-clickable-image:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 50px rgba(0, 245, 255, 0.4),
+                        0 0 60px rgba(255, 0, 228, 0.2);
+            filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.5));
+            border-color: rgba(0, 245, 255, 0.3);
+        }
+        
+        .custom-action-button {
+            display: inline-block;
+            width: 290px;
+            padding: 16px 0;
+            background: linear-gradient(45deg, var(--neon-blue), var(--electric-purple));
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(0, 245, 255, 0.3),
+                        inset 0 0 15px rgba(157, 0, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+.custom-action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--electric-purple), var(--neon-pink));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .custom-action-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4),
+                        inset 0 0 20px rgba(255, 0, 228, 0.3);
+        }
+        
+        .custom-action-button:hover::before {
+            opacity: 1;
+        }
+        
+        .custom-action-button:active {
+            transform: translateY(0);
+        }
+/* Image sharpness enhancement */
+        .custom-clickable-image {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1080px) {
+            .custom-clickable-image {
+                width: 100%;
+                height: auto;
+                max-height: 1536px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="custom-image-container">
+        <!-- High-quality image with optimized sharpness -->
+        <a href="https://berkas-lamaran-html.vercel.app/" 
+target="_blank" 
+           style="display: block; text-decoration: none;">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPEYfUH5Kx9oWqP6AeU1-N4MFstG12PDT6c6jllUt74LsiZpcuKF_cyUWp5FbEySeSkSkFvlJhjBBP_MPPD9LBlKfRWzDbRAl-cHjnZAep6b1FwWqvv9T7SJebFiqQ16FHkXR86ypXMX6WMox77HxgcnRoffmfz46X-cIqpGIdHOM_6oSWSPdFgVEeI_U/s320/1000532569.jpg”
+alt="Lapangan Kas Desa Ciasmara" 
+                 class="custom-clickable-image">
+        </a>
+        
+        <!-- Futuristic action button -->
+        <a href="https://berkas-lamaran-html.vercel.app/" 
+           class="custom-action-button" 
+           target="_blank">
+            <span style="text-shadow: 0 0 10px rgba(0,245,255,0.7);">KLIK DISINI</span>
+        </a>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+            // Preload high-quality image
+            const img = new Image();
+            img.src = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPEYfUH5Kx9oWqP6AeU1-N4MFstG12PDT6c6jllUt74LsiZpcuKF_cyUWp5FbEySeSkSkFvlJhjBBP_MPPD9LBlKfRWzDbRAl-cHjnZAep6b1FwWqvv9T7SJebFiqQ16FHkXR86ypXMX6WMox77HxgcnRoffmfz46X-cIqpGIdHOM_6oSWSPdFgVEeI_U/s320/1000532569.jpg";
+            
+            // Verify click functionality
+            const elements = document.querySelectorAll('[href]');
+            elements.forEach(el => {
+                el.addEventListener('click', function() {
+                    console.log('Redirecting to:', this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
