@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Surat Keterangan Sehat - Medical Checkup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  padding:20px;
+  color:#fff;
+}
+
+/* Card */
+.medical-card{
+  max-width:650px;
+  width:100%;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.03));
+  border-radius:20px;
+  padding:30px;
+  backdrop-filter:blur(12px);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+  transition:.4s ease;
+}
+
+.medical-card:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 25px rgba(0,255,255,.35),
+    0 0 50px rgba(0,180,255,.25);
+}
+
+/* Header */
+.medical-header{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.icon-health{
+  width:90px;
+  height:90px;
+  margin:0 auto 15px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#6ee7f9,#a78bfa);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  color:#002;
+  box-shadow:0 0 20px rgba(120,200,255,.6);
+}
+
+.medical-header h1{
+  font-size:20px;
+  letter-spacing:1px;
+  margin-bottom:6px;
+  text-shadow:0 0 12px rgba(0,255,255,.5);
+}
+
+.medical-header p{
+  font-size:13px;
+  opacity:.75;
+}
+
+/* Content */
+.medical-content{
+  background:rgba(0,0,0,.25);
+  padding:22px;
+  border-radius:16px;
+  text-align:center;
+  line-height:1.8;
+  font-size:15px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+.highlight{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 18px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#34d399,#60a5fa);
+  color:#002;
+  font-weight:600;
+  box-shadow:0 0 15px rgba(52,211,153,.6);
+}
+
+/* Footer */
+.medical-footer{
+  margin-top:25px;
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  opacity:.7;
+}
+
+.badge{
+  padding:6px 14px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:#002;
+  font-weight:600;
+  box-shadow:0 0 12px rgba(34,197,94,.6);
+}
+</style>
+</head>
+<body>
+
+<div class="medical-card">
+
+  <div class="medical-header">
+    <div class="icon-health">🩺</div>
+    <h1>SURAT KETERANGAN SEHAT</h1>
+    <p>Medical Checkup</p>
+  </div>
+
+  <div class="medical-content">
+    <p>
+      <strong>HASIL TEST KESEHATAN DARI PERUSAHAAN YANG LAMA MASIH BERLAKU</strong>
+      <br>
+      <strong>SAMPAI DENGAN 13 FEBRUARI 2026</strong>
+    </p>
+
+    <div class="highlight">
+      ❤️ Status Kesehatan : VALID
+    </div>
+  </div>
+
+  <div class="medical-footer">
+    <span>🏥 Dokumen Kesehatan</span>
+    <span class="badge">BERLAKU</span>
+  </div>
+
+</div>
+
+</body>
+</html>
